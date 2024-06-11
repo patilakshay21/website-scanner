@@ -1,8 +1,10 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const qr_code = require('qrcode');
 
 const app = express();
+const port = 4000
 
 app.set('view engine','ejs');
 app.use(bodyParser.urlencoded({extended:false}));
@@ -39,6 +41,6 @@ app.get('/download',function(req,res){
 	res.download(req.query.file_path);
 })
 
-app.listen(3000,function(){
-	console.log('Server listing on 3000');
+app.listen(process.env.PORT,function(){
+	console.log(`Server listing on port ${port} `);
 });
